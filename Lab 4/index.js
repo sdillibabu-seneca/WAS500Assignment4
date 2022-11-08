@@ -7,10 +7,9 @@ const fs = require("fs");
 const customReadFile = (file, res) => {
   fs.readFile(`./${file}`, (errors, data) => {
     if (errors) {
-      console.log("Error reading the file...", file);
-    } else {
-      console.log("Successfully outputting ", file);
-    }
+      var date = new Date();
+      console.log("Error reading the file ", file, " at ", date);
+    } 
     res.end(data);
   });
 };
@@ -96,12 +95,7 @@ router.post("/", (req, res) => {
 const app = http.createServer(router.handle);
 app.on("request", (req, res) => {
   let url = req.url;
-  if (url.indexOf(".html") !== -1) {
-    res.writeHead(httpStatus.StatusCodes.OK, {
-      "Content-Type": "text/html"
-    });
-    customReadFile(`./views${url}`, res);
-  } else if (url.indexOf(".js") !== -1) {
+  if (url.indexOf(".js") !== -1) {
     res.writeHead(httpStatus.StatusCodes.OK, {
       "Content-Type": "text/javascript"
     });
