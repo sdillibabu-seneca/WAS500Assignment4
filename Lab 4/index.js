@@ -14,6 +14,19 @@ const customReadFile = (file, res) => {
   });
 };
 
+router.get("/lab1.css", (req, res) => {
+  res.writeHead(httpStatus.StatusCodes.OK);
+  customReadFile("public/css/lab1.css", res);
+});
+
+router.get(/.*.png$/, (req, res) => {
+  res.writeHead(httpStatus.StatusCodes.OK);
+  var url = req.url;
+  customReadFile(`public/images${url}`, res);
+  var date = new Date();
+  console.log("Request recieved for page", url," at ", date);
+});
+
 router.get("/", (req, res) => {
   res.writeHead(httpStatus.StatusCodes.OK);
   customReadFile("views/index.html", res);
@@ -91,26 +104,5 @@ router.post("/", (req, res) => {
   res.end("POSTED");
 });
 
-
-const app = http.createServer(router.handle);
-app.on("request", (req, res) => {
-  let url = req.url;
-  if (url.indexOf(".js") !== -1) {
-    res.writeHead(httpStatus.StatusCodes.OK, {
-      "Content-Type": "text/javascript"
-    });
-    customReadFile(`./public/js${url}`, res);
-  } else if (url.indexOf(".css") !== -1) {
-    res.writeHead(httpStatus.StatusCodes.OK, {
-      "Content-Type": "text/css"
-    });
-    customReadFile(`public/css${url}`, res);
-  } else if (url.indexOf(".png") !== -1) {
-    res.writeHead(httpStatus.StatusCodes.OK, {
-      "Content-Type": "image/png"
-    });
-    customReadFile(`public/images${url}`, res);
-  }
-});
-app.listen(3000);
+http.createServer(router.handle).listen(3000);
 console.log(`The server is listening on port number: ${port}`);
