@@ -19,14 +19,6 @@ router.get("/lab1.css", (req, res) => {
   customReadFile("public/css/lab1.css", res);
 });
 
-router.get(/.*.png$/, (req, res) => {
-  res.writeHead(httpStatus.StatusCodes.OK);
-  var url = req.url;
-  customReadFile(`public/images${url}`, res);
-  var date = new Date();
-  console.log("Request recieved for page", url," at ", date);
-});
-
 router.get("/", (req, res) => {
   res.writeHead(httpStatus.StatusCodes.OK);
   customReadFile("views/index.html", res);
@@ -67,12 +59,22 @@ router.get("/books/percy-jackson-and-the-lightening-thief.html", (req, res) => {
   console.log("Request recieved for page", url," at ", date);
 });
 
+router.get("/the-lightning-thief-215x300.png", (req, res) => {
+  res.writeHead(httpStatus.StatusCodes.OK);
+  customReadFile("public/images/the-lightning-thief-215x300.png", res);
+});
+
 router.get("/books/percy-jackson-and-the-sea-of-monsters.html", (req, res) => {
   res.writeHead(httpStatus.StatusCodes.OK);
   customReadFile("views/books/percy-jackson-and-the-sea-of-monsters.html", res);
   var url = req.url;
   var date = new Date();
   console.log("Request recieved for page", url," at ", date);
+});
+
+router.get("/the-sea-of-monsters-3D-215x300.png", (req, res) => {
+  res.writeHead(httpStatus.StatusCodes.OK);
+  customReadFile("public/images/the-sea-of-monsters-3D-215x300.png", res);
 });
 
 router.get("/books/percy-jackson-and-the-titan's-curse.html", (req, res) => {
@@ -83,6 +85,11 @@ router.get("/books/percy-jackson-and-the-titan's-curse.html", (req, res) => {
   console.log("Request recieved for page", url," at ", date);
 });
 
+router.get("/the-titans-curse-3D-215x300.png", (req, res) => {
+  res.writeHead(httpStatus.StatusCodes.OK);
+  customReadFile("public/images/the-titans-curse-3D-215x300.png", res);
+});
+
 router.get("/books/percy-jackson-and-the-battle-of-the-labyrinth.html", (req, res) => {
   res.writeHead(httpStatus.StatusCodes.OK);
   customReadFile("views/books/percy-jackson-and-the-battle-of-the-labyrinth.html", res);
@@ -91,12 +98,22 @@ router.get("/books/percy-jackson-and-the-battle-of-the-labyrinth.html", (req, re
   console.log("Request recieved for page", url," at ", date);
 });
 
+router.get("/the-battle-of-the-labyrinth-3D-215x300.png", (req, res) => {
+  res.writeHead(httpStatus.StatusCodes.OK);
+  customReadFile("public/images/the-battle-of-the-labyrinth-3D-215x300.png", res);
+});
+
 router.get("/books/percy-jackson-and-the-last-olympian.html", (req, res) => {
   res.writeHead(httpStatus.StatusCodes.OK);
   customReadFile("views/books/percy-jackson-and-the-last-olympian.html", res);
   var url = req.url;
   var date = new Date();
   console.log("Request recieved for page", url," at ", date);
+});
+
+router.get("/the-last-olympian-3D-215x300.png", (req, res) => {
+  res.writeHead(httpStatus.StatusCodes.OK);
+  customReadFile("public/images/the-last-olympian-3D-215x300.png", res);
 });
 
 router.post("/", (req, res) => {
